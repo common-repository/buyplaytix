@@ -1,0 +1,38 @@
+<nst:root xmlns:nst="http://nest.sourceforge.net/"
+	xmlns:c="urn:nsttl:HTML_Template_Nest_Taglib_Standard">
+	<nst:attribute name="uid" />
+	<nst:attribute name="include_map" />
+
+
+		<div class="mapLink">
+				<div class="vcard">
+					<p class="fn">${location->NAME}</p>
+					<p class="adr">
+					    <c:if test="location->ADDRESS1">   
+						<span class="street-address">
+						  ${location->ADDRESS1} 
+						  <c:if test="location->ADDRESS2">
+							<br />${location->ADDRESS2}
+						  </c:if>
+						</span>
+						</c:if>
+						<c:if test="location->CITY">
+						<br /> <span class="city">${location->CITY}</span>,
+						</c:if>
+						<c:if test="location->REGION">
+						<span class="region">${location->REGION}</span> </c:if>
+						<c:if test="location->POSTALCODE">
+						<span class="postal-code">${location->POSTALCODE}</span><br />
+						</c:if>
+					</p>
+					<c:if test="location->ADDRESS1 &amp;&amp; ((location->CITY &amp;&amp; location->STATE) || (location->POSTALCODE))">
+					<p>
+						<a target="_mapWindow"
+							href="https://maps.google.com/?q=${location->ADDRESS1},${location->ADDRESS2},${location->CITY},${location->REGION} ${location->POSTALCODE}"
+							title="map to ${location->NAME}">Map <img
+							src="https://secure.buyplaytix.com/images/map.gif" /></a>
+					</p>
+					</c:if>
+				</div>
+		</div>
+</nst:root>

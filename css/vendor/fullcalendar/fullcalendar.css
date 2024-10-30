@@ -1,0 +1,579 @@
+/*!
+ * FullCalendar v1.6.3 Stylesheet
+ * Docs & License: http://arshaw.com/ful.calendar-wrapper/
+ * (c) 2013 Adam Shaw
+ */
+
+
+.calendar-wrapper .fc {
+	direction: ltr;
+	text-align: left;
+	}
+	
+.calendar-wrapper .fc table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	}
+	
+html .calendar-wrapper .fc,
+.calendar-wrapper .fc table {
+	font-size: 1em;
+	}
+	
+.calendar-wrapper .fc td,
+.calendar-wrapper .fc th {
+	padding: 0;
+	vertical-align: top;
+	}
+
+
+
+/* Header
+------------------------------------------------------------------------*/
+
+.calendar-wrapper .fc-header td {
+	white-space: nowrap;
+	}
+
+.calendar-wrapper .fc-header-left {
+	width: 25%;
+	text-align: left;
+	}
+	
+.calendar-wrapper .fc-header-center {
+	text-align: center;
+	}
+	
+.calendar-wrapper .fc-header-right {
+	width: 25%;
+	text-align: right;
+	}
+	
+.calendar-wrapper .fc-header-title {
+	display: inline-block;
+	vertical-align: top;
+	}
+	
+.calendar-wrapper .fc-header-title h2 {
+	margin-top: 0;
+	white-space: nowrap;
+	}
+	
+.calendar-wrapper .fc .fc-header-space {
+	padding-left: 10px;
+	}
+	
+.calendar-wrapper .fc-header .fc-button {
+	margin-bottom: 1em;
+	vertical-align: top;
+	}
+	
+/* buttons edges butting together */
+
+.calendar-wrapper .fc-header .fc-button {
+	margin-right: -1px;
+	}
+	
+.calendar-wrapper .fc-header .fc-corner-right,  /* non-theme */
+.calendar-wrapper .fc-header .ui-corner-right { /* theme */
+	margin-right: 0; /* back to normal */
+	}
+	
+/* button layering (for border precedence) */
+	
+.calendar-wrapper .fc-header .fc-state-hover,
+.calendar-wrapper .fc-header .ui-state-hover {
+	z-index: 2;
+	}
+	
+.calendar-wrapper .fc-header .fc-state-down {
+	z-index: 3;
+	}
+
+.calendar-wrapper .fc-header .fc-state-active,
+.calendar-wrapper .fc-header .ui-state-active {
+	z-index: 4;
+	}
+	
+	
+	
+/* Content
+------------------------------------------------------------------------*/
+	
+.calendar-wrapper .fc-content {
+	clear: both;
+	zoom: 1; /* for IE7, gives accurate coordinates for [un]freezeContentHeight */
+	}
+	
+.calendar-wrapper .fc-view {
+	width: 100%;
+	overflow: hidden;
+	}
+	
+	
+
+/* Cell Styles
+------------------------------------------------------------------------*/
+
+.calendar-wrapper .fc-widget-header,    /* <th>, usually */
+.calendar-wrapper .fc-widget-content {  /* <td>, usually */
+	border: 1px solid #ddd;
+	}
+	
+.calendar-wrapper .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
+	background: #fcf8e3;
+	}
+	
+.calendar-wrapper .fc-cell-overlay { /* semi-transparent rectangle while dragging */
+	background: #bce8f1;
+	opacity: .3;
+	filter: alpha(opacity=30); /* for IE */
+	}
+	
+
+
+/* Buttons
+------------------------------------------------------------------------*/
+
+.calendar-wrapper .fc-button {
+	position: relative;
+	display: inline-block;
+	padding: 0 .6em;
+	overflow: hidden;
+	height: 1.9em;
+	line-height: 1.9em;
+	white-space: nowrap;
+	cursor: pointer;
+	}
+	
+.calendar-wrapper .fc-state-default { /* non-theme */
+	border: 1px solid;
+	}
+
+/*
+	Our default prev/next buttons use HTML entities like &lsaquo; &rsaquo; &laquo; &raquo;
+	and we'll try to make them look good cross-browser.
+*/
+
+.calendar-wrapper .fc-text-arrow {
+	margin: 0 .1em;
+	font-size: 2em;
+	font-family: "Courier New", Courier, monospace;
+	vertical-align: baseline; /* for IE7 */
+	}
+
+.calendar-wrapper .fc-button-prev .fc-text-arrow,
+.calendar-wrapper .fc-button-next .fc-text-arrow { /* for &lsaquo; &rsaquo; */
+	font-weight: bold;
+	}
+	
+/* icon (for jquery ui) */
+	
+.calendar-wrapper .fc-button .fc-icon-wrap {
+	position: relative;
+	float: left;
+	top: 50%;
+	}
+	
+.calendar-wrapper .fc-button .ui-icon {
+	position: relative;
+	float: left;
+	margin-top: -50%;
+	*margin-top: 0;
+	*top: -50%;
+	}
+	
+/*
+  button states
+  borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
+*/
+
+.calendar-wrapper .fc-state-default {
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+	background-repeat: repeat-x;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	color: #333;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+
+.calendar-wrapper .fc-state-hover,
+.calendar-wrapper .fc-state-down,
+.calendar-wrapper .fc-state-active,
+.calendar-wrapper .fc-state-disabled {
+	color: #333333;
+	background-color: #e6e6e6;
+	}
+
+.calendar-wrapper .fc-state-hover {
+	color: #333333;
+	text-decoration: none;
+	background-position: 0 -15px;
+	-webkit-transition: background-position 0.1s linear;
+	   -moz-transition: background-position 0.1s linear;
+	     -o-transition: background-position 0.1s linear;
+	        transition: background-position 0.1s linear;
+	}
+
+.calendar-wrapper .fc-state-down,
+.calendar-wrapper .fc-state-active {
+	background-color: #cccccc;
+	background-image: none;
+	outline: 0;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	}
+
+.calendar-wrapper .fc-state-disabled {
+	cursor: default;
+	background-image: none;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	box-shadow: none;
+	}
+
+	
+
+/* Global Event Styles
+------------------------------------------------------------------------*/
+
+/*
+.fc-event-container > * {
+	z-index: 8;
+	}
+	*/
+
+.calendar-wrapper .fc-event-container > .ui-draggable-dragging,
+.calendar-wrapper .fc-event-container > .ui-resizable-resizing {
+	z-index: 9;
+	}
+	 
+.calendar-wrapper .fc-event {
+	border: 1px solid #3a87ad; /* default BORDER color */
+	background-color: #3a87ad; /* default BACKGROUND color */
+	color: #fff;               /* default TEXT color */
+	font-size: .85em;
+	cursor: default;
+	}
+
+.calendar-wrapper a.fc-event {
+	text-decoration: none;
+	}
+	
+.calendar-wrapper a.fc-event,
+.calendar-wrapper .fc-event-draggable {
+	cursor: pointer;
+	}
+	
+.calendar-wrapper .fc-rtl .fc-event {
+	text-align: right;
+	}
+
+.calendar-wrapper .fc-event-inner {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	}
+	
+.calendar-wrapper .fc-event-time,
+.calendar-wrapper .fc-event-title {
+	padding: 0 1px;
+	}
+	
+.calendar-wrapper .fc .ui-resizable-handle {
+	display: block;
+	position: absolute;
+	z-index: 99999;
+	overflow: hidden; /* hacky spaces (IE6/7) */
+	font-size: 300%;  /* */
+	line-height: 50%; /* */
+	}
+	
+	
+	
+/* Horizontal Events
+------------------------------------------------------------------------*/
+
+.calendar-wrapper .fc-event-hori {
+	border-width: 1px 0;
+	margin-bottom: 1px;
+	}
+
+.calendar-wrapper .fc-ltr .fc-event-hori.fc-event-start,
+.calendar-wrapper .fc-rtl .fc-event-hori.fc-event-end {
+	border-left-width: 1px;
+	}
+
+.calendar-wrapper .fc-ltr .fc-event-hori.fc-event-end,
+.calendar-wrapper .fc-rtl .fc-event-hori.fc-event-start {
+	border-right-width: 1px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	}
+	
+/* resizable */
+	
+.calendar-wrapper .fc-event-hori .ui-resizable-e {
+	top: 0           !important; /* importants override pre jquery ui 1.7 styles */
+	right: -3px      !important;
+	width: 7px       !important;
+	height: 100%     !important;
+	cursor: e-resize;
+	}
+	
+.calendar-wrapper .fc-event-hori .ui-resizable-w {
+	top: 0           !important;
+	left: -3px       !important;
+	width: 7px       !important;
+	height: 100%     !important;
+	cursor: w-resize;
+	}
+	
+.calendar-wrapper .fc-event-hori .ui-resizable-handle {
+	_padding-bottom: 14px; /* IE6 had 0 height */
+	}
+	
+	
+	
+/* Reusable Separate-border Table
+------------------------------------------------------------*/
+
+.calendar-wrapper table.fc-border-separate {
+	border-collapse: separate;
+	}
+	
+.calendar-wrapper .fc-border-separate th,
+.calendar-wrapper .fc-border-separate td {
+	border-width: 1px 0 0 1px;
+	}
+	
+.calendar-wrapper .fc-border-separate th.fc-last,
+.calendar-wrapper .fc-border-separate td.fc-last {
+	border-right-width: 1px;
+	}
+	
+.calendar-wrapper .fc-border-separate tr.fc-last th,
+.calendar-wrapper .fc-border-separate tr.fc-last td {
+	border-bottom-width: 1px;
+	}
+	
+.calendar-wrapper .fc-border-separate tbody tr.fc-first td,
+.calendar-wrapper .fc-border-separate tbody tr.fc-first th {
+	border-top-width: 0;
+	}
+	
+	
+
+/* Month View, Basic Week View, Basic Day View
+------------------------------------------------------------------------*/
+
+.calendar-wrapper .fc-grid th {
+	text-align: center;
+	}
+
+.calendar-wrapper .fc .fc-week-number {
+	width: 22px;
+	text-align: center;
+	}
+
+.calendar-wrapper .fc .fc-week-number div {
+	padding: 0 2px;
+	}
+	
+.calendar-wrapper .fc-grid .fc-day-number {
+	float: right;
+	padding: 0 2px;
+	}
+	
+.calendar-wrapper .fc-grid .fc-other-month .fc-day-number {
+	opacity: 0.3;
+	filter: alpha(opacity=30); /* for IE */
+	/* opacity with small font can sometimes look too faded
+	   might want to set the 'color' property instead
+	   making day-numbers bold also fixes the problem */
+	}
+	
+.calendar-wrapper .fc-grid .fc-day-content {
+	clear: both;
+	padding: 2px 2px 1px; /* distance between events and day edges */
+	}
+	
+/* event styles */
+	
+.calendar-wrapper .fc-grid .fc-event-time {
+	font-weight: bold;
+	}
+	
+/* right-to-left */
+	
+.calendar-wrapper .fc-rtl .fc-grid .fc-day-number {
+	float: left;
+	}
+	
+.calendar-wrapper .fc-rtl .fc-grid .fc-event-time {
+	float: right;
+	}
+	
+	
+
+/* Agenda Week View, Agenda Day View
+------------------------------------------------------------------------*/
+
+.calendar-wrapper .fc-agenda table {
+	border-collapse: separate;
+	}
+	
+.calendar-wrapper .fc-agenda-days th {
+	text-align: center;
+	}
+	
+.calendar-wrapper .fc-agenda .fc-agenda-axis {
+	width: 50px;
+	padding: 0 4px;
+	vertical-align: middle;
+	text-align: right;
+	white-space: nowrap;
+	font-weight: normal;
+	}
+
+.calendar-wrapper .fc-agenda .fc-week-number {
+	font-weight: bold;
+	}
+	
+.calendar-wrapper .fc-agenda .fc-day-content {
+	padding: 2px 2px 1px;
+	}
+	
+/* make axis border take precedence */
+	
+.calendar-wrapper .fc-agenda-days .fc-agenda-axis {
+	border-right-width: 1px;
+	}
+	
+.calendar-wrapper .fc-agenda-days .fc-col0 {
+	border-left-width: 0;
+	}
+	
+/* all-day area */
+	
+.calendar-wrapper .fc-agenda-allday th {
+	border-width: 0 1px;
+	}
+	
+.calendar-wrapper .fc-agenda-allday .fc-day-content {
+	min-height: 34px; /* TODO: doesnt work well in quirksmode */
+	_height: 34px;
+	}
+	
+/* divider (between all-day and slots) */
+	
+.calendar-wrapper .fc-agenda-divider-inner {
+	height: 2px;
+	overflow: hidden;
+	}
+	
+.calendar-wrapper .fc-widget-header .fc-agenda-divider-inner {
+	background: #eee;
+	}
+	
+/* slot rows */
+	
+.calendar-wrapper .fc-agenda-slots th {
+	border-width: 1px 1px 0;
+	}
+	
+.calendar-wrapper .fc-agenda-slots td {
+	border-width: 1px 0 0;
+	background: none;
+	}
+	
+.calendar-wrapper .fc-agenda-slots td div {
+	height: 20px;
+	}
+	
+.calendar-wrapper .fc-agenda-slots tr.fc-slot0 th,
+.calendar-wrapper .fc-agenda-slots tr.fc-slot0 td {
+	border-top-width: 0;
+	}
+
+.calendar-wrapper .fc-agenda-slots tr.fc-minor th,
+.calendar-wrapper .fc-agenda-slots tr.fc-minor td {
+	border-top-style: dotted;
+	}
+	
+.calendar-wrapper .fc-agenda-slots tr.fc-minor th.ui-widget-header {
+	*border-top-style: solid; /* doesn't work with background in IE6/7 */
+	}
+	
+
+
+/* Vertical Events
+------------------------------------------------------------------------*/
+
+.calendar-wrapper .fc-event-vert {
+	border-width: 0 1px;
+	}
+
+.calendar-wrapper .fc-event-vert.fc-event-start {
+	border-top-width: 1px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	}
+
+.calendar-wrapper .fc-event-vert.fc-event-end {
+	border-bottom-width: 1px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	}
+	
+.calendar-wrapper .fc-event-vert .fc-event-time {
+	white-space: nowrap;
+	font-size: 10px;
+	}
+
+.calendar-wrapper .fc-event-vert .fc-event-inner {
+	position: relative;
+	z-index: 2;
+	}
+	
+.calendar-wrapper .fc-event-vert .fc-event-bg { /* makes the event lighter w/ a semi-transparent overlay  */
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	opacity: .25;
+	filter: alpha(opacity=25);
+	}
+	
+.calendar-wrapper .fc .ui-draggable-dragging .fc-event-bg, /* TODO: something nicer like .fc-opacity */
+.calendar-wrapper .fc-select-helper .fc-event-bg {
+	display: none\9; /* for IE6/7/8. nested opacity filters while dragging don't work */
+	}
+	
+/* resizable */
+	
+.calendar-wrapper .fc-event-vert .ui-resizable-s {
+	bottom: 0        !important; /* importants override pre jquery ui 1.7 styles */
+	width: 100%      !important;
+	height: 8px      !important;
+	overflow: hidden !important;
+	line-height: 8px !important;
+	font-size: 11px  !important;
+	font-family: monospace;
+	text-align: center;
+	cursor: s-resize;
+	}
+	
+.calendar-wrapper .fc-agenda .ui-resizable-resizing { /* TODO: better selector */
+	_overflow: hidden;
+	}
+	
+	

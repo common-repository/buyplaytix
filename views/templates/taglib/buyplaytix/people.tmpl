@@ -1,0 +1,14 @@
+<nst:root xmlns:nst="http://nest.sourceforge.net/"
+	xmlns:c="urn:nsttl:HTML_Template_Nest_Taglib_Standard">
+	
+        <c:if test="count(people)">
+          <section class="cast-crew">
+              <c:foreach items="people" var="person">
+                <div class="row person">
+                  <div class="sixcol role-name" title="${person->ROLE_NAME}">${person->ROLE_NAME}</div>
+                  <div class="sixcol last person-name" title="${person->NAME}">${person->NAME}</div>
+                  </div>
+              </c:foreach>
+          </section>
+        </c:if>
+</nst:root>

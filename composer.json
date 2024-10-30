@@ -1,0 +1,20 @@
+{
+  "name": "buyplaytix/buyplaytix-wordpress",
+  "minimum-stability": "dev",
+  "config": {
+    "secure-http": false
+  },
+  "require": {
+    "oyatel/minify": "dev-master",
+    "natxet/cssmin": "dev-master",
+    "buyplaytix/HTML_Template_Nest": "1.7.1",
+    "guzzlehttp/guzzle": "^6.3",
+    "pear/http_oauth": "dev-master"
+  },
+  "autoload": {
+    "psr-0": {
+      "BuyPlayTix": "include",
+      "Taglib": "include"
+    }
+  }
+}

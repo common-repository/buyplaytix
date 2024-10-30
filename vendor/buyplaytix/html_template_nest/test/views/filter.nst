@@ -1,0 +1,8 @@
+<nst:root xmlns:nst="http://nest.sourceforge.net/" xmlns:r="urn:nsttl:HTML_Template_Nest_Taglib_Resource">
+	<r:css name="res/scss.min.css">
+		<r:scssfile name="res/c.scss" />
+	</r:css>
+	<r:js name="res/js.filter.min.js">
+		<r:jsfile name="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" />
+	</r:js>
+</nst:root>

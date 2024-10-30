@@ -1,0 +1,66 @@
+<nst:root xmlns:nst="http://nest.sourceforge.net/" xmlns:c="urn:nsttl:HTML_Template_Nest_Taglib_Standard">
+  <script type="text/javascript">
+    var basepath = '${producer->secure_path}/';  
+  </script>
+  <div class="donation">
+		<form id="_bpt_payment_form" method="post" target="_top">
+		
+		
+		</form>
+	
+		<form method="post" id="_bpt_payment_form_donate"
+			onsubmit="try {return submitDonation('_bpt_payment_form_donate');} catch(e) { alert(e); } return false;">
+			<input type="hidden" name="action" />
+			<input type="hidden" name="__type" value="Donation" />
+			<input type="hidden" name="PHPSESSID" value="${fn:session_id()}" />
+			<input type="hidden" name="donation_owner_uid" size="1" value="${producer->uid}" />
+
+			<c:if test="forceTest === 'True'">
+				<input type="hidden" name="forceTest" value="1" />
+			</c:if>
+			$ <input type="text" name="donation_amount" id="donation_amount" pattern="^[0-9]+(\.[0-9]{1,2})?$" title="Enter a monetary amount. Only numbers and a period are allowed."/>
+
+      <button type="submit" value="Donate" id="donate_button">
+        <span>Donate</span>
+      </button>
+			<c:if test="service_charge === 'True'">
+				<div class="donation-service-choice">
+					<input type="checkbox" checked="checked" name="donation_service_choice" value="on" />
+					<label>
+					Yes! I would like to pay the
+					<span class="service-charge">
+				  </span>
+					credit card fee so that ${producer->name} receives 100% of my donation.
+					</label>
+				</div>
+			</c:if>
+			<c:if test="allow_recurring === 'True'">
+				<div class="donation-recurring">
+					<input type="checkbox" name="donation_recurring" value="on" />
+					<label>Yes! I would like to give this same donation every month.</label>
+					<div class="additional-instructions">Don't worry, we'll send you an email before we charge your card each month giving you a chance to cancel.</div>
+				</div>
+			</c:if>
+      <c:if test="comments === 'True'">
+      	<textarea name="donation_comment" id="donation_comment" placeholder="Comment"><!--  --></textarea>
+      </c:if>
+		</form>
+  </div>
+	<script type="text/javascript">
+    (function($) {
+  		$('#donation_amount').keyup(function() {
+	  		var rate = 0.02900000;
+  			var amount = $('#donation_amount').val();
+
+  			$('.service-charge').html('');
+  			if (amount.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
+  				var charge = rate / (1 - rate);
+  				var ccfee = charge * amount;
+  				$('.service-charge').html('$' + Number(ccfee + 0.31).toFixed(2));
+  			}
+
+
+  		});
+    })(jQuery);
+	</script>
+</nst:root>

@@ -1,0 +1,16 @@
+<nst:root xmlns:nst="http://nest.sourceforge.net/"
+  xmlns:c="urn:nsttl:HTML_Template_Nest_Taglib_Standard" xmlns:bpt="urn:nsttl:Taglib_BuyPlayTix"
+  xmlns:pfl="urn:nsttl:Taglib_PFL">
+  <div class="bpt-history">
+  <h1>History</h1>
+ 
+  <c:foreach items="history" key="year" var="productions">
+    <h3>${year}</h3>
+    <ul id="menu-show-menu" class="menu">
+    <c:foreach items="productions" var="production">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-469"><a class="menu-link" href="${production->URL}" style="background-image: url(${\BuyPlayTix\Wordpress\Plugin::get_featured_image(production->URL_NAME)})"><span class="menu-text">${production->NAME}</span></a></li>
+    </c:foreach>
+    </ul>
+  </c:foreach>
+  </div>
+</nst:root>  

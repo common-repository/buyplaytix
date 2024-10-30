@@ -1,0 +1,125 @@
+<nst:root xmlns:nst="http://nest.sourceforge.net/" xmlns:c="urn:nsttl:HTML_Template_Nest_Taglib_Standard">
+    <div class="wrap">
+        ${fn:screen_icon()}
+        <h2>BuyPlayTix</h2>
+
+        <h2 class="nav-tab-wrapper">
+            <a href="?page=buyplaytix-manage-options&amp;tab=authorize"
+               class="nav-tab ${active === 'authorize' ? 'nav-tab-active' : ''}">Authorize</a>
+            <a href="?page=buyplaytix-manage-options&amp;tab=codes"
+               class="nav-tab ${active === 'codes' ? 'nav-tab-active' : ''}">Short Codes</a>
+            <c:if test="count(memberships)">
+                <a href="?page=buyplaytix-manage-options&amp;tab=memberships"
+                   class="nav-tab ${active === 'memberships' ? 'nav-tab-active' : ''}">Memberships</a>
+            </c:if>
+        </h2>
+
+        <c:if test="active === 'authorize'">
+            <form method="post" action="options-general.php?page=buyplaytix-manage-options">
+                <p class="instructions">You are currently signed in with BuyPlayTix as ${producer->name}.</p>
+                <input type="hidden" name="action" value="reauthorize"/>
+                <button type="submit">Re-Authorize with BuyPlayTix</button>
+            </form>
+        </c:if>
+        <c:elseif test="active === 'codes'">
+
+            <input type="hidden" name="action" value="linkProduction"/>
+            <h3>Productions</h3>
+            <h4>Widgets</h4>
+            If your theme supports it you can drag and drop using BuyPlayTix's <a href="widgets.php">widgets</a>.
+            <h4>Short Codes</h4>
+            <p>Add the ability to buy tickets directly on your site, and other information from BuyPlayTix by inserting
+                the appropriate short code
+                in the page.</p>
+            <c:if test="count(productions)">
+                <label for="productions">Production:</label>
+                <select id="productions" name="productions">
+                    <c:foreach items="productions" var="production">
+                        <option value="${production->URL_NAME}">${production->NAME}</option>
+                    </c:foreach>
+                </select>
+                <div id="production-shortcode">
+                </div>
+            </c:if>
+            <a target="_bpt" href="${\BuyPlayTix\Wordpress\OAuth::$BASE_PATH}addproduction.html">Add Production</a>
+
+            <c:if test="count(productions)">
+                <h4>Default Page</h4>
+                <p>You can set the default page for <span id="production-name">
+		    </span> so that BuyPlayTix links to it
+                    via the calendar.</p>
+
+
+                <label for="pages">Page:</label>
+                <select id="pages" name="pages">
+                    <c:foreach items="pages" var="page">
+                        <option value="${fn:get_page_link(page->ID)}">${page->post_title}</option>
+                    </c:foreach>
+                </select>
+                <button type="submit">Link</button>
+            </c:if>
+            <h3>Calendar Short Codes</h3>
+            <p>You can add a calendar with the following short code.</p>
+            <ul>
+                <li>[bpt_calendar]</li>
+            </ul>
+
+            <h3>Donation Short Code</h3>
+            <p>You can add a donation form with the following short code.</p>
+            <ul>
+                <li>[bpt_donate]</li>
+            </ul>
+
+            <h3>History Short Code</h3>
+            <p>You can add your show history to a page with the following short code.</p>
+            <ul>
+                <li>[bpt_history]</li>
+            </ul>
+        </c:elseif>
+        <c:elseif test="active === 'memberships'">
+            <form method="post" action="options-general.php?page=buyplaytix-manage-options&amp;tab=memberships">
+                <p>Here you can set which roles in Wordpress map to your BuyPlayTix memberships.</p>
+                <h4>No/Expired Membership</h4>
+                <select name="membership_none">
+                    <c:foreach items="roles" var="role" key="value">
+                        <option value="${value}">
+                            <c:attribute name="selected" trim="true" prune="true">${mappings['buyplaytix_membership_none'] === value ? 'selected' : ''}</c:attribute>
+                            ${role}
+                        </option>
+                    </c:foreach>
+                </select>
+                <c:foreach items="memberships" var="membership">
+                    <h4>${membership->NAME}</h4>
+                    <select name="membership_${membership->UID}">
+                        <c:foreach items="roles" var="role" key="value">
+                            <option value="${value}">
+                                <c:attribute name="selected" trim="true" prune="true">${mappings['buyplaytix_membership_' . membership->UID] === value ? 'selected' : ''}</c:attribute>
+                                ${role}
+                            </option>
+                        </c:foreach>
+                    </select>
+                </c:foreach>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary"
+                                         value="Save Changes"/></p>
+                <hr />
+            </form>
+            <form method="post" action="options-general.php?page=buyplaytix-manage-options&amp;tab=export-memberships">
+                <p>If you install the Locomotive plugin from:</p>
+                    <p><a href="https://github.com/reaktivstudios/locomotive">https://github.com/reaktivstudios/locomotive</a></p>
+                    <p>You can export all your local membership changes back to BuyPlayTix. Manually created Memberships will be sent an email
+                    when their Membership is about to expire with a link to purchase a new membership.</p>
+
+            </form>
+
+
+        </c:elseif>
+
+
+    </div>
+    <script type="text/javascript">
+      jQuery(function () {
+        updateProduction();
+      });
+
+    </script>
+</nst:root>
